@@ -33,8 +33,11 @@ jobs:
     - name: Executa Testes Unitarios
       run: mvn -B verify
 
+    - name: gera relatprio jacoco
+      run: mvm jacoco:prepare-agent verify 
+
     - name: analise estatica
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=rodrigopompei_vollmed-api
+      run: mvn sonar:sonar -Dsonar.projectKey=rodrigopompei_vollmed-api
       
